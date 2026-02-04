@@ -1,0 +1,16 @@
+# Xcode build files
+build/
+DerivedData/
+
+
+# iOS specific
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Xcode user settings
+xcuserdata/
+*.xccheckout
+
+# Configuration (if auto-generated)
+Configuration/

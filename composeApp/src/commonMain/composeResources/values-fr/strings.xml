@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name and branding -->
+    <string name="app_name">SmartCal</string>
+    <string name="app_tagline">Assistant de calendrier intelligent</string>
+
+    <!-- Authentication -->
+    <string name="sign_in_button">Se connecter avec Google Calendar</string>
+    <string name="sign_in_disclaimer">En vous connectant, vous acceptez de relier votre Google Calendar afin d’accéder à vos événements et de les gérer grâce à l’assistant IA.</string>
+    <string name="completing_authentication">Authentification en cours...</string>
+    <string name="loading">Chargement...</string>
+
+    <!-- Navigation -->
+    <string name="nav_calendar">Calendrier</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_settings">Paramètres</string>
+
+    <!-- Main screen titles -->
+    <string name="title_my_calendars">Mes calendriers</string>
+    <string name="title_calendar_assistant">Assistant de calendrier</string>
+    <string name="title_settings">Paramètres</string>
+    <string name="title_events">Événements</string>
+
+    <!-- Chat interface -->
+    <string name="message_placeholder">Tapez votre message...</string>
+    <string name="send_button">Envoyer</string>
+    <string name="retry_button">Réessayer</string>
+    <string name="clear_button">Effacer</string>
+    <string name="initializing_agent">Initialisation de l’assistant du calendrier...</string>
+    <string name="agent_thinking">L’assistant réfléchit...</string>
+    <string name="transcribing">Transcription...</string>
+
+    <!-- Credits exhausted -->
+    <string name="credits_exhausted_title">Vous n'avez plus de crédits !</string>
+    <string name="credits_exhausted_message">Mettez à niveau votre plan pour continuer à discuter ou attendez le mois prochain pour obtenir plus de crédits.</string>
+    <string name="credits_exhausted_message_with_renewal">Mettez à niveau votre plan pour continuer à discuter ou attendez %1$d jours de plus pour que les crédits se renouvellent.</string>
+    <string name="credits_exhausted_message_renew_tomorrow">Mettez à niveau votre plan pour continuer à discuter ou attendez jusqu\'à demain pour que les crédits se renouvellent.</string>
+    <string name="credits_exhausted_message_renew_today">Mettez à niveau votre plan pour continuer à discuter ou attendez jusqu\'à aujourd\'hui pour que les crédits se renouvellent.</string>
+    <string name="credits_exhausted_button">Voir les plans</string>
+    <string name="credits_exhausted_dismiss">Fermer</string>
+
+    <!-- Settings -->
+    <string name="account_section">Compte</string>
+    <string name="session_section">Session</string>
+    <string name="current_plan_label">Plan actuel</string>
+    <string name="credits_available_label">Crédits disponibles</string>
+    <string name="no_credits_info">Aucune information</string>
+    <string name="credits_renewal_label">Renouvellement des crédits</string>
+    <string name="credits_renew_in_days">Renouvellement dans %1$d jours</string>
+    <string name="credits_renew_tomorrow">Renouvellement demain</string>
+    <string name="credits_renew_today">Renouvellement aujourd\'hui</string>
+    <string name="credits_renewal_date">Prochain renouvellement : %1$s</string>
+    <string name="free_plan">Plan gratuit</string>
+    <string name="view_plans_button">Voir les plans</string>
+    <string name="logout_button">Se déconnecter</string>
+    <string name="logout_confirmation_title">Déconnexion</string>
+    <string name="logout_confirmation_message">Voulez-vous vraiment vous déconnecter ?</string>
+    <string name="delete_account_button">Supprimer le compte</string>
+    <string name="delete_account_confirmation_title">Supprimer le compte</string>
+    <string name="delete_account_confirmation_message">Voulez-vous vraiment supprimer définitivement votre compte ? Cette action est irréversible et supprimera toutes vos données.</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="terms_and_conditions">Conditions d’utilisation</string>
+    <string name="cancel_button">Annuler</string>
+    <string name="email_label">E-mail : %s</string>
+    <string name="no_email_available">Aucun e-mail disponible</string>
+
+    <!-- Calendar and Events -->
+    <string name="loading_calendars">Chargement des calendriers...</string>
+    <string name="loading_events">Chargement des événements...</string>
+    <string name="failed_load_calendars">Échec du chargement des calendriers</string>
+    <string name="failed_load_events">Échec du chargement des événements</string>
+    <string name="no_events_selected_date">Aucun événement à cette date</string>
+    <string name="no_past_events">Aucun événement passé</string>
+    <string name="no_upcoming_events">Aucun événement à venir</string>
+    <string name="events">Événements</string>
+    <string name="upcoming_events">Événements à venir</string>
+    <string name="past_events">Événements passés</string>
+    <string name="no_time_specified">Aucune heure spécifiée</string>
+    <string name="all_day">Toute la journée</string>
+    <string name="access_role">Accès : %s</string>
+    <string name="prev_month"><![CDATA[<]]></string>
+    <string name="next_month"><![CDATA[>]]></string>
+    <string name="filter_day">Jour</string>
+    <string name="filter_week">Semaine</string>
+    <string name="filter_month">Mois</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_back">Retour</string>
+    <string name="cd_calendars">Calendriers</string>
+    <string name="cd_chat">Chat</string>
+    <string name="cd_settings">Paramètres</string>
+    <string name="cd_time">Heure</string>
+    <string name="cd_location">Lieu</string>
+    <string name="cd_primary_calendar">Calendrier principal</string>
+    <string name="cd_view_calendar">Voir le calendrier</string>
+    <string name="cd_listening">Écoute...</string>
+    <string name="cd_transcribing">Transcription...</string>
+    <string name="cd_microphone_error">Erreur du micro</string>
+    <string name="cd_hold_to_talk">Maintenez pour parler</string>
+    <string name="release_to_send">Relâchez pour envoyer</string>
+
+    <!-- Error Messages -->
+    <string name="error_authentication_failed">Échec de l’authentification. Veuillez réessayer.</string>
+    <string name="error_no_token_received">Connexion terminée mais aucun jeton reçu. Veuillez réessayer.</string>
+    <string name="error_oauth_incomplete">Le processus de connexion n’a pas été terminé. Veuillez réessayer.</string>
+    <string name="error_oauth_cancelled">Connexion annulée.</string>
+    <string name="error_oauth_verification_failed">Échec de la vérification de connexion. Veuillez réessayer.</string>
+    <string name="error_network">Erreur réseau. Vérifiez votre connexion et réessayez.</string>
+    <string name="error_server">Erreur du serveur. Réessayez plus tard.</string>
+    <string name="error_unknown">Une erreur s’est produite. Réessayez.</string>
+    <string name="error_calendar_access">Impossible d’accéder à votre calendrier. Vérifiez vos autorisations.</string>
+    <string name="error_events_load">Impossible de charger les événements. Réessayez.</string>
+
+    <!-- AI Agent specific errors -->
+    <string name="error_agent_timeout">L'agent IA prend plus de temps que d'habitude pour traiter votre demande. Veuillez réessayer dans un moment.</string>
+    <string name="error_insufficient_credits">Vous n'avez pas assez de crédits pour envoyer ce message. Veuillez mettre à niveau votre forfait ou attendre les crédits du mois prochain.</string>
+    <string name="error_message_send_failed">Échec de l'envoi de votre message. Veuillez vérifier votre connexion et réessayer.</string>
+    <string name="error_connection_lost">La connexion a été perdue lors du traitement de votre demande. Veuillez vérifier votre internet et réessayer.</string>
+    <string name="error_no_internet">Aucune connexion internet disponible. Veuillez vérifier vos paramètres réseau et réessayer.</string>
+    <string name="error_session_expired">Votre session a expiré. Veuillez vous reconnecter.</string>
+    <string name="error_general">Une erreur s'est produite. Veuillez réessayer.</string>
+
+    <!-- Days of the week -->
+    <string name="day_monday">Lun</string>
+    <string name="day_tuesday">Mar</string>
+    <string name="day_wednesday">Mer</string>
+    <string name="day_thursday">Jeu</string>
+    <string name="day_friday">Ven</string>
+    <string name="day_saturday">Sam</string>
+    <string name="day_sunday">Dim</string>
+
+    <!-- Months (abbreviated) -->
+    <string name="month_january">Janv</string>
+    <string name="month_february">Févr</string>
+    <string name="month_march">Mars</string>
+    <string name="month_april">Avr</string>
+    <string name="month_may">Mai</string>
+    <string name="month_june">Juin</string>
+    <string name="month_july">Juil</string>
+    <string name="month_august">Août</string>
+    <string name="month_september">Sept</string>
+    <string name="month_october">Oct</string>
+    <string name="month_november">Nov</string>
+    <string name="month_december">Déc</string>
+
+    <!-- Time formatting -->
+    <string name="time_am">AM</string>
+    <string name="time_pm">PM</string>
+    <string name="time_at">à</string>
+
+    <!-- Chat welcome -->
+    <string name="chat_welcome_message">🗓️ Bonjour ! Je suis votre assistant de calendrier. Je peux vous aider avec vos événements !</string>
+
+    <!-- Event detail labels -->
+    <string name="event_start">Début</string>
+    <string name="event_end">Fin</string>
+    <string name="event_organizer">Organisateur</string>
+    <string name="event_attendees">Participants</string>
+    <string name="event_location">Lieu</string>
+    <string name="event_description">Description</string>
+    <string name="event_link">Lien de conversation</string>
+    <string name="join_meet">Rejoindre Meet</string>
+    <string name="join_video_call">Rejoindre l’appel vidéo</string>
+    <string name="has_video_call">A un appel vidéo</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_title_smart_calendar">Votre calendrier, plus intelligent</string>
+    <string name="onboarding_feature_organize">Organisez votre journée, créez des événements et résolvez les conflits grâce à l’assistant.</string>
+    <string name="onboarding_feature_check_calendars">Consultez vos calendriers sans changer d’application.</string>
+    <string name="onboarding_button_next">Suivant</string>
+    <string name="onboarding_title_free_plan">Vous commencez avec le plan gratuit</string>
+    <string name="onboarding_feature_credits">6 crédits par mois pour poser des questions à l’assistant.</string>
+    <string name="onboarding_feature_primary_calendar">Consultez votre calendrier principal gratuitement.</string>
+    <string name="onboarding_button_start_free">Commencer gratuitement</string>
+    <string name="onboarding_button_see_all_plans">Voir tous les plans</string>
+
+    <!-- Paywall -->
+    <string name="paywall_configuring_message">Configuration des options de paiement...</string>
+    <string name="paywall_error">Erreur : %1$s</string>
+    <string name="paywall_retry_button">Réessayer</string>
+    <string name="paywall_back_button">Retour</string>
+
+    <!-- Delete event -->
+    <string name="delete_event_title">Supprimer l’événement</string>
+    <string name="delete_event_message">Voulez-vous supprimer cet événement ?</string>
+    <string name="delete_button">Supprimer</string>
+
+    <!-- Months (full names for calendar) -->
+    <string name="month_full_january">Janvier</string>
+    <string name="month_full_february">Février</string>
+    <string name="month_full_march">Mars</string>
+    <string name="month_full_april">Avril</string>
+    <string name="month_full_may">Mai</string>
+    <string name="month_full_june">Juin</string>
+    <string name="month_full_july">Juillet</string>
+    <string name="month_full_august">Août</string>
+    <string name="month_full_september">Septembre</string>
+    <string name="month_full_october">Octobre</string>
+    <string name="month_full_november">Novembre</string>
+    <string name="month_full_december">Décembre</string>
+
+    <!-- AllCalendarsEventsScreen strings -->
+    <string name="calendars">Calendriers</string>
+    <string name="no_title">Sans titre</string>
+    <string name="prev_day">&lt; Précédent</string>
+    <string name="next_day">Suivant &gt;</string>
+    <string name="prev_week">&lt; Précédent</string>
+    <string name="next_week">Suivant &gt;</string>
+    <string name="profile_picture">Photo de profil</string>
+    <string name="unknown_attendee">Participant inconnu</string>
+    <string name="days_of_week_mon">Lun</string>
+    <string name="days_of_week_tue">Mar</string>
+    <string name="days_of_week_wed">Mer</string>
+    <string name="days_of_week_thu">Jeu</string>
+    <string name="days_of_week_fri">Ven</string>
+    <string name="days_of_week_sat">Sam</string>
+    <string name="days_of_week_sun">Dim</string>
+
+    <!-- Onboarding Screen -->
+    <string name="onboarding_step_1_of_2">Étape 1 sur 2</string>
+    <string name="onboarding_step_2_of_2">Étape 2 sur 2</string>
+    <string name="onboarding_app_icon_description">Calendrier IA</string>
+    <string name="onboarding_credits_label">CRÉDITS</string>
+    <string name="onboarding_credits_number">6</string>
+    <string name="onboarding_credit_info">1 question = 1 crédit</string>
+
+    <!-- PreLogin Info Screen -->
+    <string name="prelogin_description">SmartCal est un assistant de calendrier intelligent qui aide les utilisateurs à gérer leur temps efficacement en analysant leurs événements Google Calendar et en suggérant des options d'horaires optimales.</string>
+    <string name="prelogin_visit_site">Visiter smartcal.app</string>
+    <string name="prelogin_view_privacy_policy">Voir la politique de confidentialité</string>
+    <string name="prelogin_continue_to_sign_in">Continuer vers la connexion</string>
+
+    <!-- Edit/Create Event & Contacts -->
+    <string name="edit_event_title">Modifier l'événement</string>
+    <string name="create_event_title">Créer un événement</string>
+    <string name="save_button">Enregistrer</string>
+    <string name="create_button">Créer</string>
+    <string name="done_button">Terminé</string>
+    <string name="contacts_label">Contacts</string>
+    <string name="select_contacts_title">Sélectionner des contacts</string>
+    <string name="calendar_label">Calendrier</string>
+    <string name="select_calendar_title">Sélectionner un calendrier</string>
+    <string name="event_title_label">Titre</string>
+    <string name="event_notes_label">Notes</string>
+    <string name="event_date_label">Date</string>
+    <string name="event_time_label">Heure</string>
+    <string name="attendees_label">Participants</string>
+    <string name="loading_contacts">Chargement des contacts...</string>
+    <string name="loading_profile">Actualisation du profil...</string>
+    <string name="no_contacts">Aucun contact trouvé</string>
+    <string name="error_contacts">Échec du chargement des contacts</string>
+
+    <!-- Accessibility and content descriptions -->
+    <string name="cd_menu">Menu</string>
+    <string name="cd_refresh">Actualiser</string>
+    <string name="selected_contact">Sélectionné</string>
+
+    <!-- Placeholders and labels -->
+    <string name="search_placeholder">Rechercher</string>
+    <string name="attendees_placeholder">email1@exemple.com, email2@exemple.com</string>
+    <string name="ok_button">OK</string>
+    <string name="event_date_label_start">Date (début)</string>
+    <string name="event_date_label_end">Date (fin)</string>
+    <string name="event_time_label_start">Heure (début)</string>
+    <string name="event_time_label_end">Heure (fin)</string>
+
+    <!-- Pull to refresh -->
+    <string name="pull_to_refresh_hint">Balayez vers le bas pour actualiser...</string>
+
+    <!-- View section -->
+    <string name="view_label">Affichage</string>
+    
+    <!-- Reminder strings -->
+    <string name="reminder">Rappel</string>
+    <string name="reminders">Rappels</string>
+    <string name="set_reminder">Définir un Rappel</string>
+    <string name="reminder_none">Aucun rappel</string>
+    <string name="reminder_at_time">Au moment de l\'événement</string>
+    <string name="reminder_5_minutes">5 minutes avant</string>
+    <string name="reminder_10_minutes">10 minutes avant</string>
+    <string name="reminder_15_minutes">15 minutes avant</string>
+    <string name="reminder_30_minutes">30 minutes avant</string>
+    <string name="reminder_1_hour">1 heure avant</string>
+    <string name="reminder_2_hours">2 heures avant</string>
+    <string name="reminder_1_day">1 jour avant</string>
+    <string name="reminder_1_week">1 semaine avant</string>
+    <string name="reminder_custom">Personnalisé...</string>
+    <string name="custom_reminder">Rappel Personnalisé</string>
+    <string name="set_reminder_time">Définir l\'heure du rappel :</string>
+    <string name="hours">Heures</string>
+    <string name="minutes">Minutes</string>
+    <string name="reminder_method_popup">popup</string>
+    <string name="reminder_method_email">email</string>
+    <string name="default_calendar_reminders">Rappels par défaut du calendrier</string>
+    <string name="before">avant</string>
+    <string name="days">jours</string>
+    <string name="method">Méthode</string>
+    
+    <!-- Notification actions -->
+    <string name="notification_action_view_event">Voir l'événement</string>
+    <string name="notification_action_join_meeting">Rejoindre</string>
+    
+    <!-- Notification reminder time formatting -->
+    <string name="reminder_starts_now">Commence maintenant</string>
+    <string name="reminder_starts_in_minutes">Commence dans %1$d min</string>
+    <string name="reminder_starts_in_1_minute">Commence dans 1 minute</string>
+    <string name="reminder_starts_in_hours">Commence dans %1$d heures</string>
+    <string name="reminder_starts_in_1_hour">Commence dans 1 heure</string>
+    <string name="reminder_starts_in_days">Commence dans %1$d jours</string>
+    <string name="reminder_starts_in_1_day">Commence dans 1 jour</string>
+    <string name="reminder_starts_in_hour_minutes">Commence dans %1$d heure %2$d min</string>
+    <string name="reminder_starts_in_hours_minutes">Commence dans %1$d heures %2$d min</string>
+    <!-- Messages de réussite d’abonnement -->
+    <string name="subscription_success_message">Abonnement au plan %1$s réussi</string>
+    <string name="subscription_success_message_generic">Abonnement réussi</string>
+</resources>
