@@ -5,20 +5,20 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-// Custom colors with the requested blue #478bf8
-private val CalendarBlue = Color(0xFF478bf8)
-private val CalendarBlueVariant = Color(0xFF3574e6) // Slightly darker variant
-private val CalendarBlueLight = Color(0xFF6ba3fa) // Slightly lighter variant
+// Custom colors with the requested primary #14be82 (green)
+private val CalendarGreen = Color(0xFF14be82)
+private val CalendarGreenVariant = Color(0xFF0FA372) // Slightly darker variant
+private val CalendarGreenLight = Color(0xFF4FD6A7) // Slightly lighter variant
 
 private val LightColorScheme = lightColorScheme(
-    primary = CalendarBlue,
+    primary = CalendarGreen,
     onPrimary = Color.White,
-    primaryContainer = CalendarBlueLight,
-    onPrimaryContainer = Color.White,
-    secondary = CalendarBlueVariant,
+    primaryContainer = CalendarGreenLight,
+    onPrimaryContainer = Color(0xFF003826),
+    secondary = CalendarGreenVariant,
     onSecondary = Color.White,
-    secondaryContainer = Color(0xFFE3F2FD),
-    onSecondaryContainer = Color(0xFF1565C0),
+    secondaryContainer = Color(0xFFD0F5E6),
+    onSecondaryContainer = Color(0xFF0B4A34),
     tertiary = Color(0xFF6750A4),
     onTertiary = Color.White,
     tertiaryContainer = Color(0xFFEADDFF),
@@ -36,21 +36,21 @@ private val LightColorScheme = lightColorScheme(
     outline = Color(0xFF79747E),
     inverseOnSurface = Color(0xFFF4EFF4),
     inverseSurface = Color(0xFF313033),
-    inversePrimary = Color(0xFF6ba3fa),
-    surfaceTint = CalendarBlue,
+    inversePrimary = CalendarGreenLight,
+    surfaceTint = CalendarGreen,
     outlineVariant = Color(0xFFCAC4D0),
     scrim = Color(0xFF000000)
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = CalendarBlueLight,
-    onPrimary = Color(0xFF003258),
-    primaryContainer = CalendarBlue,
+    primary = CalendarGreenLight,
+    onPrimary = Color(0xFF003826),
+    primaryContainer = CalendarGreen,
     onPrimaryContainer = Color.White,
-    secondary = CalendarBlue,
+    secondary = CalendarGreen,
     onSecondary = Color.White,
-    secondaryContainer = Color(0xFF004881),
-    onSecondaryContainer = Color(0xFFD1E4FF),
+    secondaryContainer = Color(0xFF0B4A34),
+    onSecondaryContainer = Color(0xFFD0F5E6),
     tertiary = Color(0xFFCFBCFF),
     onTertiary = Color(0xFF361D73),
     tertiaryContainer = Color(0xFF4F378B),
@@ -68,8 +68,8 @@ private val DarkColorScheme = darkColorScheme(
     outline = Color(0xFF938F99),
     inverseOnSurface = Color(0xFF1C1B1F),
     inverseSurface = Color(0xFFE6E1E5),
-    inversePrimary = CalendarBlue,
-    surfaceTint = CalendarBlueLight,
+    inversePrimary = CalendarGreen,
+    surfaceTint = CalendarGreenLight,
     outlineVariant = Color(0xFF49454F),
     scrim = Color(0xFF000000)
 )

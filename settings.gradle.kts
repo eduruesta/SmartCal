@@ -1,4 +1,4 @@
-rootProject.name = "SmartCal"
+rootProject.name = "SmartCalAI"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

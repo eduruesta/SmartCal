@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SmartCal</string>
+    <string name="app_name">SmartCalAI</string>
     <string name="app_tagline">Assistente de Calendário Inteligente</string>
     <string name="sign_in_button">Entrar com o Google Agenda</string>
     <string name="sign_in_disclaimer">Ao entrar, você concorda em conectar seu Google Agenda para acessar e gerenciar seus eventos com a ajuda da IA.</string>
@@ -176,7 +176,7 @@
     <string name="onboarding_credit_info">1 pergunta = 1 crédito</string>
     <string name="onboarding_button_start_free">Começar grátis</string>
     <string name="onboarding_button_see_all_plans">Ver todos os planos</string>
-    <string name="prelogin_description">SmartCal é um assistente de calendário inteligente que ajuda usuários a gerenciar seu tempo de forma eficiente, analisando eventos do Google Agenda e sugerindo opções ideais de agendamento.</string>
+    <string name="prelogin_description">SmartCalAI é um assistente de calendário inteligente que ajuda usuários a gerenciar seu tempo de forma eficiente, analisando eventos do Google Agenda e sugerindo opções ideais de agendamento.</string>
     <string name="prelogin_visit_site">Visite smartcal.app</string>
     <string name="prelogin_view_privacy_policy">Ver Política de Privacidade</string>
     <string name="prelogin_continue_to_sign_in">Continuar para entrar</string>

@@ -79,8 +79,9 @@ kotlin {
             implementation("com.mohamedrejeb.calf:calf-webview:0.8.0")
 
 
-            // Markdown renderer with Material 3 support - compatible with Kotlin 2.1.x
-            implementation("com.mikepenz:multiplatform-markdown-renderer-m3:0.32.0")
+            // Markdown renderer with Material 3 support
+            implementation("com.mikepenz:multiplatform-markdown-renderer:0.27.0")
+            implementation("com.mikepenz:multiplatform-markdown-renderer-m3:0.27.0")
 
 
             // Coil Image Loading

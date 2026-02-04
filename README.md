@@ -1,6 +1,6 @@
-# SmartCal - Smart Calendar Assistant
+# SmartCalAI - Smart Calendar Assistant
 
-SmartCal is an intelligent calendar assistant mobile application built with Kotlin Multiplatform (KMP) and Jetpack Compose. The app integrates with external calendar services to help users manage their schedules through natural language interactions powered by AI.
+SmartCalAI is an intelligent calendar assistant mobile application built with Kotlin Multiplatform (KMP) and Jetpack Compose. The app integrates with external calendar services to help users manage their schedules through natural language interactions powered by AI.
 
 ## 🎯 Features
 
@@ -207,7 +207,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**SmartCal - Smart Calendar Assistant** 🚀  
+**SmartCalAI - Smart Calendar Assistant** 🚀  
 Package: `com.smartcal.app`  
 Platform: Kotlin Multiplatform Compose
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SmartCal</string>
+    <string name="app_name">SmartCalAI</string>
     <string name="app_tagline">スマートカレンダーアシスタント</string>
     <string name="sign_in_button">Google カレンダーでサインイン</string>
     <string name="sign_in_disclaimer">サインインすると、Google カレンダーを接続し、AI アシスタントを通じてイベントにアクセスおよび管理することに同意したことになります。</string>
@@ -176,7 +176,7 @@
     <string name="onboarding_credit_info">1 質問 = 1 クレジット</string>
     <string name="onboarding_button_start_free">無料で開始</string>
     <string name="onboarding_button_see_all_plans">すべてのプランを見る</string>
-    <string name="prelogin_description">SmartCal は、Google カレンダーのイベントを分析し、最適なスケジューリングを提案して、ユーザーの時間管理を支援するスマートなカレンダーアシスタントです。</string>
+    <string name="prelogin_description">SmartCalAI は、Google カレンダーのイベントを分析し、最適なスケジューリングを提案して、ユーザーの時間管理を支援するスマートなカレンダーアシスタントです。</string>
     <string name="prelogin_visit_site">smartcal.app を見る</string>
     <string name="prelogin_view_privacy_policy">プライバシーポリシーを見る</string>
     <string name="prelogin_continue_to_sign_in">サインインへ進む</string>

@@ -81,7 +81,11 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import com.mikepenz.markdown.m3.Markdown
+import com.mikepenz.markdown.m3.markdownColor
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -187,7 +191,7 @@ fun CalendarScreen(
     var isUpdatingEvent by remember { mutableStateOf(false) }
     var isDeletingEvent by remember { mutableStateOf(false) }
     var showEditContactsPicker by remember { mutableStateOf(false) }
-    
+
     // Credits renewal state
     var creditsRenewalDate by remember { mutableStateOf<String?>(null) }
     var daysUntilRenewal by remember { mutableStateOf<Int?>(null) }
@@ -207,7 +211,7 @@ fun CalendarScreen(
 
     // Replace welcome message and error placeholders with localized versions
     val welcomeMessage = stringResource(Res.string.chat_welcome_message)
-    
+
     // Pre-compute all error messages to avoid @Composable calls inside remember
     val errorMessages = mapOf(
         "error_agent_timeout" to stringResource(Res.string.error_agent_timeout),
@@ -228,22 +232,26 @@ fun CalendarScreen(
         "error_unknown" to stringResource(Res.string.error_unknown),
         "error_general" to stringResource(Res.string.error_general)
     )
-    
-    val messagesWithLocalizedWelcome = remember(conversationState.messages, welcomeMessage, errorMessages) {
-        conversationState.messages.map { message ->
-            when {
-                message.content == "WELCOME_MESSAGE_PLACEHOLDER" -> {
-                    message.copy(content = welcomeMessage)
+
+    val messagesWithLocalizedWelcome =
+        remember(conversationState.messages, welcomeMessage, errorMessages) {
+            conversationState.messages.map { message ->
+                when {
+                    message.content == "WELCOME_MESSAGE_PLACEHOLDER" -> {
+                        message.copy(content = welcomeMessage)
+                    }
+
+                    message.content.startsWith("ERROR_PLACEHOLDER:") -> {
+                        val errorKey = message.content.removePrefix("ERROR_PLACEHOLDER:")
+                        val localizedError =
+                            errorMessages[errorKey] ?: errorMessages["error_general"]!!
+                        message.copy(content = localizedError)
+                    }
+
+                    else -> message
                 }
-                message.content.startsWith("ERROR_PLACEHOLDER:") -> {
-                    val errorKey = message.content.removePrefix("ERROR_PLACEHOLDER:")
-                    val localizedError = errorMessages[errorKey] ?: errorMessages["error_general"]!!
-                    message.copy(content = localizedError)
-                }
-                else -> message
             }
         }
-    }
 
     // Auto-scroll to bottom when new messages arrive (only when on chat tab)
     LaunchedEffect(conversationState.messages.size, selectedTab) {
@@ -253,7 +261,7 @@ fun CalendarScreen(
             }
         }
     }
-    
+
     // Refresh user profile and credits info when entering Settings tab
     LaunchedEffect(selectedTab) {
         if (selectedTab == BottomNavTab.SETTINGS) {
@@ -261,7 +269,7 @@ fun CalendarScreen(
                 try {
                     println("🔄 Refreshing user profile for Settings screen")
                     viewModel.getUserProfile()
-                    
+
                     // Fetch credits renewal information
                     println("🔄 Fetching credits renewal info for Settings screen")
                     val creditsInfoResult = viewModel.getUserCreditsInfo()
@@ -310,11 +318,11 @@ fun CalendarScreen(
                                         contactsResultCallback?.invoke(emails)
                                         contactsResultCallback = null
                                         showContactsScreen = false
-                                        
+
                                         if (selectedEventForEdit != null) {
                                             showEditEventScreen = true
                                         }
-                                        
+
                                         contactsOpenedFromCreateEvent = false
                                     }
                                 )
@@ -344,9 +352,12 @@ fun CalendarScreen(
                                         coroutineScope.launch {
                                             selectedEventForEdit?.let { ev ->
                                                 isDeletingEvent = true
-                                                val result = viewModel.deleteEvent(ev.id, selectedEventCalendarId ?: "primary")
+                                                val result = viewModel.deleteEvent(
+                                                    ev.id,
+                                                    selectedEventCalendarId ?: "primary"
+                                                )
                                                 isDeletingEvent = false
-                                                
+
                                                 if (result.isSuccess) {
                                                     // Navigate to calendar events screen first
                                                     showEditEventScreen = false
@@ -355,7 +366,7 @@ fun CalendarScreen(
                                                     selectedEventCalendarId = null
                                                     dateStartBuffer = null
                                                     dateEndBuffer = null
-                                                    
+
                                                     // Then refresh calendar data (this will show the refresh spinner)
                                                     viewModel.refreshCalendarData()
                                                 }
@@ -391,7 +402,7 @@ fun CalendarScreen(
                                     }
                                 )
                             }
-                            
+
                             // ContactsPicker overlay for EditEventScreen
                             if (showEditContactsPicker) {
                                 Box(
@@ -609,8 +620,8 @@ fun MessageBubble(
     maxWidth: Dp = 320.dp
 ) {
     val isUser = message.isUser
-    val bg = if (isUser) MaterialTheme.colorScheme.primary else Color(0xFF65C466)
-    val fg = if (isUser) MaterialTheme.colorScheme.onPrimary else Color.White
+    val bg = if (isUser) MaterialTheme.colorScheme.primary else Color(0xFF8B5CF6)
+    val fg = Color.White
 
     val shape =
         if (isUser) {
@@ -631,15 +642,14 @@ fun MessageBubble(
     ) {
         Surface(
             color = bg,
-            contentColor = fg,
             shape = shape,
             modifier = Modifier.widthIn(max = maxWidth)
         ) {
             SelectionContainer {
-                Text(
-                    text = message.content,
-                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
-                    style = MaterialTheme.typography.bodyMedium
+                Markdown(
+                    content = message.content,
+                    colors = markdownColor(text = Color.White),
+                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
                 )
             }
         }
@@ -677,7 +687,7 @@ private fun ChatScreen(
                             Text(
                                 text = fullName,
                                 fontSize = 16.sp,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f),
+                                color = Color.White.copy(alpha = 0.7f),
                                 textAlign = TextAlign.Start,
                                 modifier = Modifier.fillMaxWidth()
                             )
@@ -695,35 +705,35 @@ private fun ChatScreen(
                                 imageVector = Contactless,
                                 contentDescription = "Credits",
                                 modifier = Modifier.size(16.dp),
-                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                                tint = Color.White
                             )
                             Spacer(modifier = Modifier.width(4.dp))
                             Text(
                                 text = credits.toString(),
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                                color = Color.White
                             )
                         }
                     }
 
                     // Show Clear button when there are actual conversation messages (excluding welcome message)
                     val hasRealMessages = conversationState.messages.any { message ->
-                        message.content != "WELCOME_MESSAGE_PLACEHOLDER" && 
-                        !message.content.startsWith("ERROR_PLACEHOLDER:") &&
-                        !message.content.contains("🗓️ Hi! I'm your Calendar Assistant") &&
-                        !message.content.contains("🗓️ ¡Hola! Soy tu Asistente de Calendario") &&
-                        !message.content.contains("🗓️ Bonjour ! Je suis votre assistant de calendrier")
+                        message.content != "WELCOME_MESSAGE_PLACEHOLDER" &&
+                                !message.content.startsWith("ERROR_PLACEHOLDER:") &&
+                                !message.content.contains("🗓️ Hi! I'm your Calendar Assistant") &&
+                                !message.content.contains("🗓️ ¡Hola! Soy tu Asistente de Calendario") &&
+                                !message.content.contains("🗓️ Bonjour ! Je suis votre assistant de calendrier")
                     }
                     if (hasRealMessages) {
                         TextButton(onClick = { viewModel.clearConversation() }) {
-                            Text(stringResource(Res.string.clear_button))
+                            Text(stringResource(Res.string.clear_button), color = Color.White)
                         }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    titleContentColor = Color.White
                 )
             )
         }
@@ -832,8 +842,7 @@ private fun ChatContent(
                             StreamingAssistantBubble(
                                 text = streamingText,                 // se muestra si hay stream
                                 showTyping = showTyping,              // sino, puntito titilando
-                                bubbleColor = Color(0xFF65C466),      // mismo verde del agente
-                                textColor = Color.White
+                                bubbleColor = Color(0xFF8B5CF6)      // violeta del agente
                             )
                         }
                     }
@@ -891,7 +900,6 @@ fun StreamingAssistantBubble(
     text: String,
     showTyping: Boolean,
     bubbleColor: Color,
-    textColor: Color,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -909,10 +917,10 @@ fun StreamingAssistantBubble(
             ) {
                 if (text.isNotBlank()) {
                     SelectionContainer {
-                        Text(
-                            text = text,
-                            color = textColor,
-                            style = MaterialTheme.typography.bodyMedium
+                        Markdown(
+                            content = text,
+                            colors = markdownColor(text = Color.White),
+                            modifier = Modifier,
                         )
                     }
                 } else if (showTyping) {
@@ -975,7 +983,11 @@ private fun CreditsExhaustedCard(
                     text = when (daysUntilRenewal) {
                         0 -> stringResource(Res.string.credits_exhausted_message_renew_today)
                         1 -> stringResource(Res.string.credits_exhausted_message_renew_tomorrow)
-                        in 2..Int.MAX_VALUE -> stringResource(Res.string.credits_exhausted_message_with_renewal, daysUntilRenewal ?: 0)
+                        in 2..Int.MAX_VALUE -> stringResource(
+                            Res.string.credits_exhausted_message_with_renewal,
+                            daysUntilRenewal ?: 0
+                        )
+
                         else -> stringResource(Res.string.credits_exhausted_message)
                     },
                     style = MaterialTheme.typography.bodyMedium,

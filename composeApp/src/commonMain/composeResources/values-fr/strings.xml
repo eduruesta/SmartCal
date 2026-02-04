@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App name and branding -->
-    <string name="app_name">SmartCal</string>
+    <string name="app_name">SmartCalAI</string>
     <string name="app_tagline">Assistant de calendrier intelligent</string>
 
     <!-- Authentication -->
@@ -225,7 +225,7 @@
     <string name="onboarding_credit_info">1 question = 1 crédit</string>
 
     <!-- PreLogin Info Screen -->
-    <string name="prelogin_description">SmartCal est un assistant de calendrier intelligent qui aide les utilisateurs à gérer leur temps efficacement en analysant leurs événements Google Calendar et en suggérant des options d'horaires optimales.</string>
+    <string name="prelogin_description">SmartCalAI est un assistant de calendrier intelligent qui aide les utilisateurs à gérer leur temps efficacement en analysant leurs événements Google Calendar et en suggérant des options d'horaires optimales.</string>
     <string name="prelogin_visit_site">Visiter smartcal.app</string>
     <string name="prelogin_view_privacy_policy">Voir la politique de confidentialité</string>
     <string name="prelogin_continue_to_sign_in">Continuer vers la connexion</string>

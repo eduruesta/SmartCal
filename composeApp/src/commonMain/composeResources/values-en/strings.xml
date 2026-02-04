@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App name and branding -->
-    <string name="app_name">SmartCal</string>
+    <string name="app_name">SmartCalAI</string>
     <string name="app_tagline">Smart Calendar Assistant</string>
     
     <!-- Authentication -->
@@ -212,7 +212,7 @@
     <string name="onboarding_button_see_all_plans">See All Plans</string>
     
     <!-- PreLogin Info Screen -->
-    <string name="prelogin_description">SmartCal is a smart calendar assistant that helps users manage their time efficiently by analyzing their Google Calendar events and suggesting optimal scheduling options.</string>
+    <string name="prelogin_description">SmartCalAI is a smart calendar assistant that helps users manage their time efficiently by analyzing their Google Calendar events and suggesting optimal scheduling options.</string>
     <string name="prelogin_visit_site">Visit smartcal.app</string>
     <string name="prelogin_view_privacy_policy">View Privacy Policy</string>
     <string name="prelogin_continue_to_sign_in">Continue to Sign In</string>
