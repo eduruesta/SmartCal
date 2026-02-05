@@ -1,11 +1,11 @@
 package com.smartcal.app.ui.components
 
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.app_name
-import smartcal.composeapp.generated.resources.calendars
-import smartcal.composeapp.generated.resources.filter_day
-import smartcal.composeapp.generated.resources.filter_month
-import smartcal.composeapp.generated.resources.filter_week
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.app_name
+import smartcalai.composeapp.generated.resources.calendars
+import smartcalai.composeapp.generated.resources.filter_day
+import smartcalai.composeapp.generated.resources.filter_month
+import smartcalai.composeapp.generated.resources.filter_week
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

@@ -1,9 +1,9 @@
 package com.smartcal.app.presentation.subscription
 
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.paywall_back_button
-import smartcal.composeapp.generated.resources.paywall_error
-import smartcal.composeapp.generated.resources.paywall_retry_button
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.paywall_back_button
+import smartcalai.composeapp.generated.resources.paywall_error
+import smartcalai.composeapp.generated.resources.paywall_retry_button
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

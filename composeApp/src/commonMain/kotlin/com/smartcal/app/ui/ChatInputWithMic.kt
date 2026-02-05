@@ -1,14 +1,14 @@
 package com.smartcal.app.ui
 
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.cd_hold_to_talk
-import smartcal.composeapp.generated.resources.cd_listening
-import smartcal.composeapp.generated.resources.cd_microphone_error
-import smartcal.composeapp.generated.resources.cd_transcribing
-import smartcal.composeapp.generated.resources.message_placeholder
-import smartcal.composeapp.generated.resources.release_to_send
-import smartcal.composeapp.generated.resources.send_button
-import smartcal.composeapp.generated.resources.transcribing
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.cd_hold_to_talk
+import smartcalai.composeapp.generated.resources.cd_listening
+import smartcalai.composeapp.generated.resources.cd_microphone_error
+import smartcalai.composeapp.generated.resources.cd_transcribing
+import smartcalai.composeapp.generated.resources.message_placeholder
+import smartcalai.composeapp.generated.resources.release_to_send
+import smartcalai.composeapp.generated.resources.send_button
+import smartcalai.composeapp.generated.resources.transcribing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat

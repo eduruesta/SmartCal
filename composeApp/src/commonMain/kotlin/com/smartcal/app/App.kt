@@ -1,10 +1,10 @@
 package com.smartcal.app
 
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.cancel_button
-import smartcal.composeapp.generated.resources.completing_authentication
-import smartcal.composeapp.generated.resources.loading
-import smartcal.composeapp.generated.resources.paywall_configuring_message
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.cancel_button
+import smartcalai.composeapp.generated.resources.completing_authentication
+import smartcalai.composeapp.generated.resources.loading
+import smartcalai.composeapp.generated.resources.paywall_configuring_message
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,6 +29,8 @@ import com.smartcal.app.auth.startSystemBrowserAuth
 import com.smartcal.app.data.subscription.API_KEY
 import com.smartcal.app.data.subscription.RevenueCatManager
 import com.smartcal.app.presentation.subscription.RevenueCatPaywallScreen
+import com.smartcal.app.reminders.ReminderLifecycleObserver
+import com.smartcal.app.reminders.ReminderManager
 import com.smartcal.app.storage.SessionStorage
 import com.smartcal.app.ui.CalendarScreen
 import com.smartcal.app.ui.LoginScreen
@@ -37,8 +39,6 @@ import com.smartcal.app.ui.theme.CalendarTheme
 import com.smartcal.app.utils.VoiceTranscriberFactory
 import com.smartcal.app.viewmodel.AuthViewModel
 import com.smartcal.app.viewmodel.CalendarViewModel
-import com.smartcal.app.reminders.ReminderManager
-import com.smartcal.app.reminders.ReminderLifecycleObserver
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
@@ -50,7 +50,7 @@ fun App(voiceTranscriberFactory: VoiceTranscriberFactory? = null) {
     val isInOAuthFlow by authViewModel.isInOAuthFlow.collectAsState()
     val revenueCatManager: RevenueCatManager = koinInject()
     val reminderManager: ReminderManager = koinInject()
-    
+
     // Debug logging
     LaunchedEffect(authState.creditsRemaining, authState.subscriptionPlan) {
         println("🔍 App.kt - AuthState updated:")
@@ -81,14 +81,14 @@ fun App(voiceTranscriberFactory: VoiceTranscriberFactory? = null) {
 
     // Onboarding state - check from SessionStorage and user's isNewUser status
     var shouldShowOnboarding by remember { mutableStateOf(false) }
-    
+
     // Paywall state for upgrade plan
     var showPaywall by remember { mutableStateOf(false) }
-    
+
     // Navigation after subscription success
     var navigateToSettings by remember { mutableStateOf(false) }
     var settingsSuccessPlanLabel by remember { mutableStateOf<String?>(null) }
-    
+
     // Determine if we should show onboarding based on:
     // 1. User hasn't completed onboarding before (stored locally)
     // 2. User is a new user (from backend)
@@ -112,7 +112,7 @@ fun App(voiceTranscriberFactory: VoiceTranscriberFactory? = null) {
                 // Show onboarding for new users (after authentication)
                 shouldShowOnboarding -> {
                     OnboardingScreen(
-                        onOnboardingComplete = { 
+                        onOnboardingComplete = {
                             SessionStorage.setOnboardingCompleted(true)
                             shouldShowOnboarding = false
                         },
@@ -142,11 +142,11 @@ fun App(voiceTranscriberFactory: VoiceTranscriberFactory? = null) {
                             println("🎯 App.kt - Showing paywall, isRevenueCatReady: ${authState.isRevenueCatReady}")
                             if (authState.isRevenueCatReady) {
                                 RevenueCatPaywallScreen(
-                                    onBackClick = { 
+                                    onBackClick = {
                                         println("🔙 App.kt - Paywall back clicked")
-                                        showPaywall = false 
+                                        showPaywall = false
                                     },
-                                    onSubscriptionSuccess = { planLabel -> 
+                                    onSubscriptionSuccess = { planLabel ->
                                         println("✅ App.kt - Subscription success - closing paywall")
                                         showPaywall = false
                                         // Navigate to Settings and show success message
@@ -173,9 +173,10 @@ fun App(voiceTranscriberFactory: VoiceTranscriberFactory? = null) {
                                 }
                             }
                         }
+
                         else -> {
                             val calendarViewModel = koinViewModel<CalendarViewModel>()
-                            
+
                             // Lifecycle observer para sincronizar recordatorios
                             ReminderLifecycleObserver(
                                 reminderManager = reminderManager,
@@ -201,9 +202,9 @@ fun App(voiceTranscriberFactory: VoiceTranscriberFactory? = null) {
                                 onDeleteAccount = authViewModel::deleteAccount,
                                 onCreditsUpdate = authViewModel::updateCreditsAndSubscription,
                                 onUserProfileUpdate = authViewModel::updateUserProfile,
-                                onUpgradePlan = { 
+                                onUpgradePlan = {
                                     println("⬆️ App.kt - onUpgradePlan triggered, setting showPaywall = true")
-                                    showPaywall = true 
+                                    showPaywall = true
                                 },
                                 navigateToSettings = navigateToSettings,
                                 settingsSuccessPlanLabel = settingsSuccessPlanLabel,

@@ -1,6 +1,6 @@
 package com.smartcal.app.ui
 
-import smartcal.composeapp.generated.resources.*
+import smartcalai.composeapp.generated.resources.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -29,7 +29,7 @@ import com.smartcal.app.models.AuthState
 import com.smartcal.app.utils.openBrowser
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import smartcal.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.Res
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll

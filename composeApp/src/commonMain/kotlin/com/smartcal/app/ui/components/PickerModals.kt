@@ -19,9 +19,9 @@ import com.mohamedrejeb.calf.ui.timepicker.rememberAdaptiveTimePickerState
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.ok_button
-import smartcal.composeapp.generated.resources.cancel_button
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.ok_button
+import smartcalai.composeapp.generated.resources.cancel_button
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.rememberScrollState

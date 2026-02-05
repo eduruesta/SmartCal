@@ -1,14 +1,14 @@
 package com.smartcal.app.ui.components
 
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.cd_back
-import smartcal.composeapp.generated.resources.done_button
-import smartcal.composeapp.generated.resources.error_contacts
-import smartcal.composeapp.generated.resources.no_contacts
-import smartcal.composeapp.generated.resources.profile_picture
-import smartcal.composeapp.generated.resources.search_placeholder
-import smartcal.composeapp.generated.resources.select_contacts_title
-import smartcal.composeapp.generated.resources.selected_contact
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.cd_back
+import smartcalai.composeapp.generated.resources.done_button
+import smartcalai.composeapp.generated.resources.error_contacts
+import smartcalai.composeapp.generated.resources.no_contacts
+import smartcalai.composeapp.generated.resources.profile_picture
+import smartcalai.composeapp.generated.resources.search_placeholder
+import smartcalai.composeapp.generated.resources.select_contacts_title
+import smartcalai.composeapp.generated.resources.selected_contact
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

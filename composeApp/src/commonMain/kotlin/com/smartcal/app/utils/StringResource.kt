@@ -1,18 +1,18 @@
 package com.smartcal.app.utils
 
 import org.jetbrains.compose.resources.getString
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.notification_action_join_meeting
-import smartcal.composeapp.generated.resources.notification_action_view_event
-import smartcal.composeapp.generated.resources.reminder_starts_now
-import smartcal.composeapp.generated.resources.reminder_starts_in_minutes
-import smartcal.composeapp.generated.resources.reminder_starts_in_1_minute
-import smartcal.composeapp.generated.resources.reminder_starts_in_hours
-import smartcal.composeapp.generated.resources.reminder_starts_in_1_hour
-import smartcal.composeapp.generated.resources.reminder_starts_in_days
-import smartcal.composeapp.generated.resources.reminder_starts_in_1_day
-import smartcal.composeapp.generated.resources.reminder_starts_in_hour_minutes
-import smartcal.composeapp.generated.resources.reminder_starts_in_hours_minutes
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.notification_action_join_meeting
+import smartcalai.composeapp.generated.resources.notification_action_view_event
+import smartcalai.composeapp.generated.resources.reminder_starts_now
+import smartcalai.composeapp.generated.resources.reminder_starts_in_minutes
+import smartcalai.composeapp.generated.resources.reminder_starts_in_1_minute
+import smartcalai.composeapp.generated.resources.reminder_starts_in_hours
+import smartcalai.composeapp.generated.resources.reminder_starts_in_1_hour
+import smartcalai.composeapp.generated.resources.reminder_starts_in_days
+import smartcalai.composeapp.generated.resources.reminder_starts_in_1_day
+import smartcalai.composeapp.generated.resources.reminder_starts_in_hour_minutes
+import smartcalai.composeapp.generated.resources.reminder_starts_in_hours_minutes
 
 object NotificationStrings {
     suspend fun getViewEventAction(): String = getString(Res.string.notification_action_view_event)

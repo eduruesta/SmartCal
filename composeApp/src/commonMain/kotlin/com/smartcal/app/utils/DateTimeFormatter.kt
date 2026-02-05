@@ -3,8 +3,8 @@ package com.smartcal.app.utils
 import androidx.compose.runtime.Composable
 import kotlinx.datetime.*
 import org.jetbrains.compose.resources.stringResource
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.*
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.*
 
 /**
  * Formats an ISO datetime string into a user-friendly format

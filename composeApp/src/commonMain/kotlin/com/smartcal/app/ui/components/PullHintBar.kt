@@ -1,7 +1,7 @@
 package com.smartcal.app.ui.components
 
-import smartcal.composeapp.generated.resources.Res
-import smartcal.composeapp.generated.resources.pull_to_refresh_hint
+import smartcalai.composeapp.generated.resources.Res
+import smartcalai.composeapp.generated.resources.pull_to_refresh_hint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
