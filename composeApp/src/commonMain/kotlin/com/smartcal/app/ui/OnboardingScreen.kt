@@ -10,8 +10,12 @@ import smartcalai.composeapp.generated.resources.onboarding_credits_label
 import smartcalai.composeapp.generated.resources.onboarding_credits_number
 import smartcalai.composeapp.generated.resources.onboarding_feature_check_calendars
 import smartcalai.composeapp.generated.resources.onboarding_feature_credits
+import smartcalai.composeapp.generated.resources.onboarding_feature_multiple_calendars
+import smartcalai.composeapp.generated.resources.onboarding_feature_natural_language
 import smartcalai.composeapp.generated.resources.onboarding_feature_organize
 import smartcalai.composeapp.generated.resources.onboarding_feature_primary_calendar
+import smartcalai.composeapp.generated.resources.onboarding_feature_smart_suggestions
+import smartcalai.composeapp.generated.resources.onboarding_feature_voice_commands
 import smartcalai.composeapp.generated.resources.onboarding_step_1_of_2
 import smartcalai.composeapp.generated.resources.onboarding_step_2_of_2
 import smartcalai.composeapp.generated.resources.onboarding_title_free_plan
@@ -183,6 +187,18 @@ private fun FirstOnboardingStep(
             )
             FeatureItem(
                 text = stringResource(Res.string.onboarding_feature_check_calendars)
+            )
+            FeatureItem(
+                text = stringResource(Res.string.onboarding_feature_voice_commands)
+            )
+            FeatureItem(
+                text = stringResource(Res.string.onboarding_feature_smart_suggestions)
+            )
+            FeatureItem(
+                text = stringResource(Res.string.onboarding_feature_multiple_calendars)
+            )
+            FeatureItem(
+                text = stringResource(Res.string.onboarding_feature_natural_language)
             )
         }
 

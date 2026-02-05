@@ -201,6 +201,10 @@
     <string name="onboarding_title_smart_calendar">让你的日历更聪明</string>
     <string name="onboarding_feature_organize">在助理帮助下规划你的一天、创建活动并解决冲突。</string>
     <string name="onboarding_feature_check_calendars">无需切换应用即可查看最新日历。</string>
+    <string name="onboarding_feature_voice_commands">使用语音命令免提管理你的日历。</string>
+    <string name="onboarding_feature_smart_suggestions">获取最佳会议时间的智能建议。</string>
+    <string name="onboarding_feature_multiple_calendars">在一个地方管理多个 Google 日历。</string>
+    <string name="onboarding_feature_natural_language">自然说话 - AI 理解你的需求。</string>
     <string name="onboarding_button_next">下一步</string>
     <string name="onboarding_credits_label">额度</string>
     <string name="onboarding_credits_number">6</string>

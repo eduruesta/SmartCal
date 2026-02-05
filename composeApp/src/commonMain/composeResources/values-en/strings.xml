@@ -201,6 +201,10 @@
     <string name="onboarding_title_smart_calendar">Your calendar, now smarter</string>
     <string name="onboarding_feature_organize">Organize your day, create events, and solve conflicts with the help of the agent.</string>
     <string name="onboarding_feature_check_calendars">Check your updated calendars without switching apps.</string>
+    <string name="onboarding_feature_voice_commands">Use voice commands to manage your calendar hands-free.</string>
+    <string name="onboarding_feature_smart_suggestions">Get smart suggestions for the best meeting times.</string>
+    <string name="onboarding_feature_multiple_calendars">Manage multiple Google calendars in one place.</string>
+    <string name="onboarding_feature_natural_language">Talk naturally - the AI understands what you need.</string>
     <string name="onboarding_button_next">Next</string>
     <string name="onboarding_credits_label">CREDITS</string>
     <string name="onboarding_credits_number">6</string>

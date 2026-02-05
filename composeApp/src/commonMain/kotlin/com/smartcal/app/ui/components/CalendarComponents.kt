@@ -1043,9 +1043,15 @@ private data class OptimizedMonthData(
             val eventsPerDay = mutableMapOf<LocalDate, MutableList<Pair<Event, Calendar>>>()
             for ((event, calendar) in eventsWithCalendars) {
                 val eStart = eventStartLocalDate(event, systemZone) ?: continue
-                val eEnd = eventEndLocalDate(event, systemZone) ?: eStart.plus(DatePeriod(days = 1))
+                val rawEnd = eventEndLocalDate(event, systemZone) ?: eStart.plus(DatePeriod(days = 1))
+                // Google Calendar semantics:
+                // - All-day events use end.date which is EXCLUSIVE (already next day)
+                // - Timed events use end.dateTime which is INSTANT-precise; their LocalDate should be treated as INCLUSIVE
+                //   for the day they end, so we add +1 day to convert to an exclusive end boundary.
+                val isAllDay = event.start?.date != null && event.end?.date != null
+                val eEndExclusive = if (isAllDay) rawEnd else rawEnd.plus(DatePeriod(days = 1))
                 var d = maxOf(eStart, monthStart)
-                val limit = minOf(eEnd, monthEnd.plus(DatePeriod(days = 1)))
+                val limit = minOf(eEndExclusive, monthEnd.plus(DatePeriod(days = 1)))
                 while (d < limit) {
                     if (d.year == year && d.monthNumber == month) {
                         eventsPerDay.getOrPut(d) { mutableListOf() }.add(event to calendar)
@@ -1135,12 +1141,20 @@ private fun DayCell(
                 Spacer(Modifier.height(2.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                     dayEvents.groupBy { (_, calendar) -> calendar.id }
-                        .entries.take(3).forEach { (calendarId, _) ->
+                        .entries.take(3).forEach { (calendarId, events) ->
+                            val color = calendarColors[calendarId]
+                                ?: events.firstOrNull()?.second?.backgroundColor?.let { colorString ->
+                                    try {
+                                        val colorValue = colorString.removePrefix("#").toLong(16)
+                                        Color(0xFF000000 or colorValue)
+                                    } catch (_: Exception) { null }
+                                }
+                                ?: Color(0xFF10B981) // Verde por defecto
                             Box(
                                 modifier = Modifier
-                                    .size(4.dp)
+                                    .size(6.dp)
                                     .clip(CircleShape)
-                                    .background(calendarColors[calendarId] ?: Color(0xFF2196F3))
+                                    .background(color)
                             )
                         }
                 }

@@ -165,8 +165,12 @@
 
     <!-- Onboarding -->
     <string name="onboarding_title_smart_calendar">Votre calendrier, plus intelligent</string>
-    <string name="onboarding_feature_organize">Organisez votre journée, créez des événements et résolvez les conflits grâce à l’assistant.</string>
-    <string name="onboarding_feature_check_calendars">Consultez vos calendriers sans changer d’application.</string>
+    <string name="onboarding_feature_organize">Organisez votre journée, créez des événements et résolvez les conflits grâce à l'assistant.</string>
+    <string name="onboarding_feature_check_calendars">Consultez vos calendriers sans changer d'application.</string>
+    <string name="onboarding_feature_voice_commands">Utilisez des commandes vocales pour gérer votre calendrier sans les mains.</string>
+    <string name="onboarding_feature_smart_suggestions">Obtenez des suggestions intelligentes pour les meilleurs horaires de réunion.</string>
+    <string name="onboarding_feature_multiple_calendars">Gérez plusieurs calendriers Google au même endroit.</string>
+    <string name="onboarding_feature_natural_language">Parlez naturellement - l'IA comprend ce dont vous avez besoin.</string>
     <string name="onboarding_button_next">Suivant</string>
     <string name="onboarding_title_free_plan">Vous commencez avec le plan gratuit</string>
     <string name="onboarding_feature_credits">6 crédits par mois pour poser des questions à l’assistant.</string>

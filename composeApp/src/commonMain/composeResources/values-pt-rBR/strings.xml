@@ -167,6 +167,10 @@
     <string name="onboarding_title_smart_calendar">Seu calendário, agora mais inteligente</string>
     <string name="onboarding_feature_organize">Organize seu dia, crie eventos e resolva conflitos com a ajuda do assistente.</string>
     <string name="onboarding_feature_check_calendars">Veja seus calendários atualizados sem trocar de app.</string>
+    <string name="onboarding_feature_voice_commands">Use comandos de voz para gerenciar seu calendário sem usar as mãos.</string>
+    <string name="onboarding_feature_smart_suggestions">Receba sugestões inteligentes para os melhores horários de reunião.</string>
+    <string name="onboarding_feature_multiple_calendars">Gerencie vários calendários do Google em um só lugar.</string>
+    <string name="onboarding_feature_natural_language">Fale naturalmente - a IA entende o que você precisa.</string>
     <string name="onboarding_button_next">Avançar</string>
     <string name="onboarding_credits_label">CRÉDITOS</string>
     <string name="onboarding_credits_number">6</string>
