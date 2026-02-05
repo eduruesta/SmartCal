@@ -414,7 +414,7 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.clickable {
-                            openBrowser("https://docs.google.com/document/d/e/2PACX-1vRVxXnObSSfqd5bFSQiodyOyKO0HkG8uZFIAhoj457OzZ43l6D0EW0oeyQbvrA3zCM_-IFZBIUfOKKM/pub")
+                            openBrowser("https://gendaai.com/privacy.html")
                         }
                     )
                     

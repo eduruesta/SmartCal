@@ -158,14 +158,14 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         TextButton(
-            onClick = { openBrowser("https://smartcal.app/privacy") },
+            onClick = { openBrowser("https://gendaai.com/privacy.html") },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(Res.string.prelogin_view_privacy_policy))
         }
 
         TextButton(
-            onClick = { openBrowser("https://smartcal.app") },
+            onClick = { openBrowser("https://gendaai.com") },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(Res.string.prelogin_visit_site))

@@ -177,7 +177,7 @@
     <string name="onboarding_button_start_free">Começar grátis</string>
     <string name="onboarding_button_see_all_plans">Ver todos os planos</string>
     <string name="prelogin_description">SmartCalAI é um assistente de calendário inteligente que ajuda usuários a gerenciar seu tempo de forma eficiente, analisando eventos do Google Agenda e sugerindo opções ideais de agendamento.</string>
-    <string name="prelogin_visit_site">Visite smartcal.app</string>
+    <string name="prelogin_visit_site">Visite smartcalai.com</string>
     <string name="prelogin_view_privacy_policy">Ver Política de Privacidade</string>
     <string name="prelogin_continue_to_sign_in">Continuar para entrar</string>
     <string name="edit_event_title">Editar evento</string>

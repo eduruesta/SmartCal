@@ -27,5 +27,5 @@ actual fun openBrowser(url: String) {
 }
 
 actual fun getTermsAndConditionsUrl(): String {
-    return "https://docs.google.com/document/d/1uooYkFzqs7ztTG8Xr2Vos3DqicNu87doeaxmtslFcxo/edit?tab=t.0"
+    return "https://gendaai.com/terms.html"
 }

@@ -177,7 +177,7 @@
     <string name="onboarding_button_start_free">無料で開始</string>
     <string name="onboarding_button_see_all_plans">すべてのプランを見る</string>
     <string name="prelogin_description">SmartCalAI は、Google カレンダーのイベントを分析し、最適なスケジューリングを提案して、ユーザーの時間管理を支援するスマートなカレンダーアシスタントです。</string>
-    <string name="prelogin_visit_site">smartcal.app を見る</string>
+    <string name="prelogin_visit_site">smartcalai.com を見る</string>
     <string name="prelogin_view_privacy_policy">プライバシーポリシーを見る</string>
     <string name="prelogin_continue_to_sign_in">サインインへ進む</string>
     <string name="edit_event_title">イベントを編集</string>

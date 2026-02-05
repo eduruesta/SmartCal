@@ -213,7 +213,7 @@
     
     <!-- Pantalla de Información Pre-Login -->
     <string name="prelogin_description">SmartCalAI es un asistente de calendario inteligente que ayuda a los usuarios a administrar su tiempo de manera eficiente analizando sus eventos de Google Calendar y sugiriendo opciones de programación óptimas.</string>
-    <string name="prelogin_visit_site">Visitar smartcal.app</string>
+    <string name="prelogin_visit_site">Visitar smartcalai.com</string>
     <string name="prelogin_view_privacy_policy">Ver Política de Privacidad</string>
     <string name="prelogin_continue_to_sign_in">Continuar para Iniciar Sesión</string>
     

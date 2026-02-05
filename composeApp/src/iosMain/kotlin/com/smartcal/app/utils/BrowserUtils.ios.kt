@@ -28,5 +28,5 @@ actual fun openBrowser(url: String) {
 }
 
 actual fun getTermsAndConditionsUrl(): String {
-    return "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+    return "https://gendaai.com/terms.html"
 }

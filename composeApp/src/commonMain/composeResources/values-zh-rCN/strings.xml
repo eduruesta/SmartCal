@@ -213,7 +213,7 @@
 
     <!-- PreLogin Info Screen -->
     <string name="prelogin_description">SmartCalAI 是一款智能日历助理，通过分析你的 Google 日历活动，帮助你高效管理时间，并为你提供更优的日程安排建议。</string>
-    <string name="prelogin_visit_site">访问 smartcal.app</string>
+    <string name="prelogin_visit_site">访问 smartcalai.com</string>
     <string name="prelogin_view_privacy_policy">查看隐私政策</string>
     <string name="prelogin_continue_to_sign_in">继续登录</string>
 
