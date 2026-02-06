@@ -485,11 +485,21 @@ class CalendarViewModel(
         val token = sessionToken ?: return Result.failure(Exception("Session token not set"))
         val result = calendarService.updateEvent(token, eventId, request)
         
-        // Resincronizar recordatorios después de actualizar un evento
+        // Re-sincronizar recordatorios: cancelar los existentes del evento y luego recargar
         if (result.isSuccess) {
+            // Cancel current reminders for this event to avoid stale notifications
+            viewModelScope.launch {
+                try {
+                    reminderManager.cancelEventReminders(eventId)
+                    println("🔕 Cancelled reminders for updated event $eventId")
+                } catch (e: Exception) {
+                    println("❌ Failed to cancel reminders for updated event $eventId: ${e.message}")
+                }
+            }
+            // Refresh events; reminder sync will schedule new ones according to latest data
             try {
                 refreshCalendarData()
-                println("🔔 Recordatorios resincionizados después de actualizar evento $eventId")
+                println("🔔 Recordatorios resincronizados después de actualizar evento $eventId")
             } catch (e: Exception) {
                 println("❌ Error resincronizando recordatorios después de actualizar evento: ${e.message}")
             }
@@ -530,8 +540,17 @@ class CalendarViewModel(
         val token = sessionToken ?: return Result.failure(Exception("Session token not set"))
         val result = calendarService.deleteEvent(token, eventId, calendarId)
         
-        // Resincronizar recordatorios después de eliminar un evento
         if (result.isSuccess) {
+            // Cancel reminders tied to this event immediately
+            viewModelScope.launch {
+                try {
+                    reminderManager.cancelEventReminders(eventId)
+                    println("🔕 Cancelled reminders for deleted event $eventId")
+                } catch (e: Exception) {
+                    println("❌ Failed to cancel reminders for deleted event $eventId: ${e.message}")
+                }
+            }
+            // Then refresh events and re-sync remaining reminders
             try {
                 refreshCalendarData()
                 println("🔔 Recordatorios sincronizados después de eliminar evento $eventId")

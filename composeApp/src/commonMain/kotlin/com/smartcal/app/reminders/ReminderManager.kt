@@ -51,6 +51,21 @@ class ReminderManager(
         }
     }
 
+    // Sync reminders for a single event (create/update flows)
+    suspend fun syncEvent(
+        event: Event,
+        defaultReminders: DefaultReminders = mapOf("primary" to listOf(10))
+    ) {
+        if (!_isEnabled.value) return
+        val lite = EventLite.from(event) ?: return
+        syncRemindersForEvent(
+            ev = lite,
+            defaultsByCalendar = defaultReminders,
+            scheduler = scheduler,
+            index = index
+        )
+    }
+
     suspend fun syncRollingEvents(
         fetchEvents: suspend (fromUtcMillis: Long, toUtcMillis: Long) -> List<EventLite>,
         defaultReminders: DefaultReminders = mapOf("primary" to listOf(10)),
