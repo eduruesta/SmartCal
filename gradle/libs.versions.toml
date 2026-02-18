@@ -11,14 +11,14 @@ androidx-lifecycle = "2.8.0"
 androidx-testExt = "1.2.1"
 composeMultiplatform = "1.8.2"
 junit = "4.13.2"
-kotlin = "2.1.21"
+kotlin = "2.2.10"
 koin = "4.1.0"
 koinCompose = "4.0.0"
 ktor = "3.1.1"
 multiplatformMarkdownRendererM3 = "0.37.0"
 navigation = "2.7.0-alpha07"
 serialization = "1.8.0"
-koog = "0.4.1"
+koog = "0.5.1"
 coil = "3.1.0"
 kotlinx-datetime = "0.4.0"
 mcp-kotlin-sdk = "0.1.0"
@@ -65,6 +65,7 @@ kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime",
 
 # Koog AI Agent
 koog-agents = { module = "ai.koog:koog-agents", version.ref = "koog" }
+koog-agents-mcp = { module = "ai.koog:agents-mcp", version.ref = "koog" }
 
 # MCP Kotlin SDK
 mcp-kotlin-server = { module = "org.modelcontextprotocol:kotlin-sdk-server", version.ref = "mcp-kotlin-sdk" }

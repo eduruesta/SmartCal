@@ -20,12 +20,13 @@ val appModule = module {
     // Services
     single { AuthService(get()) }
     single { CalendarService() }
+    single { com.smartcal.app.services.FrontendMessageService() }
     
     // Storage
     single { SessionStorage }
     
     // Repository
-    single<CalendarRepository> { CalendarRepositoryImpl() }
+    single<CalendarRepository> { CalendarRepositoryImpl(get()) }
     
     // RevenueCat
     single<RevenueCatManager> { RevenueCatManagerImpl() }

@@ -1,6 +1,6 @@
 package com.smartcal.app.repository
 
-// Removed agent-related imports - now using backend API
+// Removed agent-related imports - now using backend API (kept for backend path)
 import com.smartcal.app.services.UnauthorizedException
 import com.smartcal.app.services.InsufficientCreditsException
 import com.smartcal.app.utils.getErrorMessageKey
@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.delay
+import com.smartcal.app.config.AppFeatures
+import com.smartcal.app.services.FrontendMessageService
+import com.smartcal.app.models.MessageRequest
 
 data class ChatMessage(
     val content: String,
@@ -39,7 +42,9 @@ interface CalendarRepository {
     fun dismissCreditsExhausted()
 }
 
-class CalendarRepositoryImpl : CalendarRepository {
+class CalendarRepositoryImpl(
+    private val frontendMessageService: FrontendMessageService = FrontendMessageService(),
+) : CalendarRepository {
     
     private val _conversationState = MutableStateFlow(ConversationState())
     override val conversationState: StateFlow<ConversationState> = _conversationState.asStateFlow()
@@ -72,88 +77,114 @@ class CalendarRepositoryImpl : CalendarRepository {
     
     override suspend fun sendMessageStreaming(message: String): Result<String> {
         return try {
-            val token = sessionToken ?: return Result.failure(Exception("Session token not set"))
-            
             _conversationState.value = _conversationState.value.copy(isLoading = true, error = null)
-            
+
             // Add user message
             addMessage(ChatMessage(content = message, isUser = true))
-            
-            // Send message to backend API
-            val result = calendarService.sendMessage(token, message, conversationId)
-            
-            result.fold(
-                onSuccess = { messageResponse ->
-                    // Start simulated streaming with empty message
-                    _conversationState.value = _conversationState.value.copy(streamingMessage = "")
-                    
-                    // Simulate typewriter effect with backend response
-                    val response = messageResponse.message
-                    val words = response.split(" ")
-                    var currentText = ""
-                    
-                    for (word in words) {
-                        currentText += if (currentText.isEmpty()) word else " $word"
-                        _conversationState.value = _conversationState.value.copy(
-                            streamingMessage = currentText
-                        )
-                        delay(50) // 50ms delay between words
-                    }
-                    
-                    // Clear streaming message and add final message
-                    _conversationState.value = _conversationState.value.copy(
-                        streamingMessage = null,
-                        isLoading = false
-                    )
-                    
-                    // Update conversation ID if provided
-                    conversationId = messageResponse.conversationId ?: conversationId
-                    
-                    // Update credits and subscription if provided
-                    println("📊 CalendarRepository: MessageResponse received")
-                    println("   creditsRemaining: ${messageResponse.creditsRemaining}")
-                    println("   subscriptionPlan: ${messageResponse.subscriptionPlan}")
-                    if (messageResponse.creditsRemaining != null || messageResponse.subscriptionPlan != null) {
-                        println("🔗 CalendarRepository: Calling credits update callback")
-                        onCreditsUpdateCallback?.invoke(messageResponse.creditsRemaining, messageResponse.subscriptionPlan)
-                    } else {
-                        println("⚠️ CalendarRepository: No credits/subscription data in response")
-                    }
-                    
-                    // Add final agent response
-                    addMessage(ChatMessage(content = response, isUser = false))
-                    
-                    Result.success(response)
-                },
-                onFailure = { e ->
-                    if (e is UnauthorizedException) {
-                        println("🔒 Token expired in sendMessage - triggering logout")
-                        onTokenExpiredCallback?.invoke()
-                    } else if (e is InsufficientCreditsException) {
-                        println("💳 Insufficient credits in sendMessage - showing credits exhausted message")
-                        _conversationState.value = _conversationState.value.copy(
-                            isLoading = false,
-                            error = null,
-                            streamingMessage = null,
-                            showCreditsExhausted = true
-                        )
-                    } else {
-                        val errorKey = getErrorMessageKey(e.message)
-                        val errorMessage = "ERROR_PLACEHOLDER:$errorKey"
-                        _conversationState.value = _conversationState.value.copy(
-                            isLoading = false,
-                            error = errorMessage,
-                            streamingMessage = null,
-                            showCreditsExhausted = false
-                        )
-                        addMessage(ChatMessage(content = errorMessage, isUser = false))
-                    }
-                    Result.failure(e)
+
+            if (AppFeatures.runAgentLocally) {
+                // In-app path: call local FrontendMessageService with MCP tools
+                val req = MessageRequest(message = message, conversationId = conversationId)
+                val userEmail = userProfile?.email
+                val messageResponse = frontendMessageService.send(req, userEmail, sessionToken)
+
+                // Start simulated streaming with empty message
+                _conversationState.value = _conversationState.value.copy(streamingMessage = "")
+
+                val response = messageResponse.message
+                val words = response.split(" ")
+                var currentText = ""
+                for (word in words) {
+                    currentText += if (currentText.isEmpty()) word else " $word"
+                    _conversationState.value = _conversationState.value.copy(streamingMessage = currentText)
+                    delay(35) // slightly faster for local stub
                 }
-            )
+                _conversationState.value = _conversationState.value.copy(streamingMessage = null, isLoading = false)
+
+                // Update conversation ID
+                conversationId = messageResponse.conversationId ?: conversationId
+
+                // Add final agent response
+                addMessage(ChatMessage(content = response, isUser = false))
+                return Result.success(response)
+            } else {
+                // Backend API path (current behavior)
+                val token = sessionToken ?: return Result.failure(Exception("Session token not set"))
+                val result = calendarService.sendMessage(token, message, conversationId)
+
+                result.fold(
+                    onSuccess = { messageResponse ->
+                        // Start simulated streaming with empty message
+                        _conversationState.value = _conversationState.value.copy(streamingMessage = "")
+
+                        // Simulate typewriter effect with backend response
+                        val response = messageResponse.message
+                        val words = response.split(" ")
+                        var currentText = ""
+
+                        for (word in words) {
+                            currentText += if (currentText.isEmpty()) word else " $word"
+                            _conversationState.value = _conversationState.value.copy(
+                                streamingMessage = currentText
+                            )
+                            delay(50) // 50ms delay between words
+                        }
+
+                        // Clear streaming message and add final message
+                        _conversationState.value = _conversationState.value.copy(
+                            streamingMessage = null,
+                            isLoading = false
+                        )
+
+                        // Update conversation ID if provided
+                        conversationId = messageResponse.conversationId ?: conversationId
+
+                        // Update credits and subscription if provided
+                        println("📊 CalendarRepository: MessageResponse received")
+                        println("   creditsRemaining: ${'$'}{messageResponse.creditsRemaining}")
+                        println("   subscriptionPlan: ${'$'}{messageResponse.subscriptionPlan}")
+                        if (messageResponse.creditsRemaining != null || messageResponse.subscriptionPlan != null) {
+                            println("🔗 CalendarRepository: Calling credits update callback")
+                            onCreditsUpdateCallback?.invoke(messageResponse.creditsRemaining, messageResponse.subscriptionPlan)
+                        } else {
+                            println("⚠️ CalendarRepository: No credits/subscription data in response")
+                        }
+
+                        // Add final agent response
+                        addMessage(ChatMessage(content = response, isUser = false))
+
+                        Result.success(response)
+                    },
+                    onFailure = { e ->
+                        if (e is UnauthorizedException) {
+                            println("🔒 Token expired in sendMessage - triggering logout")
+                            onTokenExpiredCallback?.invoke()
+                        } else if (e is InsufficientCreditsException) {
+                            println("💳 Insufficient credits in sendMessage - showing credits exhausted message")
+                            _conversationState.value = _conversationState.value.copy(
+                                isLoading = false,
+                                error = null,
+                                streamingMessage = null,
+                                showCreditsExhausted = true
+                            )
+                        } else {
+                            val errorKey = getErrorMessageKey(e.message)
+                            val errorMessage = "ERROR_PLACEHOLDER:${'$'}errorKey"
+                            _conversationState.value = _conversationState.value.copy(
+                                isLoading = false,
+                                error = errorMessage,
+                                streamingMessage = null,
+                                showCreditsExhausted = false
+                            )
+                            addMessage(ChatMessage(content = errorMessage, isUser = false))
+                        }
+                        Result.failure(e)
+                    }
+                )
+            }
         } catch (e: Exception) {
             val errorKey = getErrorMessageKey(e.message)
-            val errorMessage = "ERROR_PLACEHOLDER:$errorKey"
+            val errorMessage = "ERROR_PLACEHOLDER:${'$'}errorKey"
             _conversationState.value = _conversationState.value.copy(
                 isLoading = false,
                 error = errorMessage,
