@@ -114,9 +114,9 @@ class SmartCalAgentProvider {
             timeToolsRegistry
         } else {
             try {
-                // Build MCP URL with session token in path
-                // Koog's defaultSseTransport expects the base URL, it will append /sse and /message
-                val mcpUrl = "${baseUrl.trimEnd('/')}/$sessionToken"
+                // Build MCP URL with session token and /sse suffix
+                // Koog's defaultSseTransport does NOT append /sse automatically
+                val mcpUrl = "${baseUrl.trimEnd('/')}/$sessionToken/sse"
                 println("🔗 Connecting to MCP server at: $mcpUrl")
                 val mcpTransport = McpToolRegistryProvider.defaultSseTransport(mcpUrl)
                 val mcpToolRegistry = McpToolRegistryProvider.fromTransport(
