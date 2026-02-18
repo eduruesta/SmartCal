@@ -88,6 +88,35 @@ class CalendarRepositoryImpl(
                 val userEmail = userProfile?.email
                 val messageResponse = frontendMessageService.send(req, userEmail, sessionToken)
 
+                // Handle credits exhausted (same UX as backend 402)
+                if (!messageResponse.success && messageResponse.showCreditsExhausted == true) {
+                    println("💳 Insufficient credits in local agent - showing credits exhausted message")
+                    _conversationState.value = _conversationState.value.copy(
+                        isLoading = false,
+                        error = null,
+                        streamingMessage = null,
+                        showCreditsExhausted = true
+                    )
+                    onCreditsUpdateCallback?.invoke(messageResponse.creditsRemaining, messageResponse.subscriptionPlan)
+                    return Result.failure(InsufficientCreditsException(
+                        messageResponse.message,
+                        messageResponse.creditsRemaining,
+                        messageResponse.subscriptionPlan
+                    ))
+                }
+
+                // Handle other failures (LLM error, session error, etc.)
+                if (!messageResponse.success) {
+                    _conversationState.value = _conversationState.value.copy(
+                        isLoading = false,
+                        error = messageResponse.message,
+                        streamingMessage = null,
+                        showCreditsExhausted = false
+                    )
+                    addMessage(ChatMessage(content = messageResponse.message, isUser = false))
+                    return Result.failure(Exception(messageResponse.message))
+                }
+
                 // Start simulated streaming with empty message
                 _conversationState.value = _conversationState.value.copy(streamingMessage = "")
 
@@ -103,6 +132,11 @@ class CalendarRepositoryImpl(
 
                 // Update conversation ID
                 conversationId = messageResponse.conversationId ?: conversationId
+
+                // Update credits and subscription if provided
+                if (messageResponse.creditsRemaining != null || messageResponse.subscriptionPlan != null) {
+                    onCreditsUpdateCallback?.invoke(messageResponse.creditsRemaining, messageResponse.subscriptionPlan)
+                }
 
                 // Add final agent response
                 addMessage(ChatMessage(content = response, isUser = false))
@@ -167,6 +201,7 @@ class CalendarRepositoryImpl(
                                 streamingMessage = null,
                                 showCreditsExhausted = true
                             )
+                            onCreditsUpdateCallback?.invoke(e.creditsRemaining, e.subscriptionPlan)
                         } else {
                             val errorKey = getErrorMessageKey(e.message)
                             val errorMessage = "ERROR_PLACEHOLDER:${'$'}errorKey"
@@ -197,6 +232,8 @@ class CalendarRepositoryImpl(
     
     override fun clearConversation() {
         println("🧹 CalendarRepository: Clearing conversation")
+        // Clear cached MCP agent so the connection is released (e.g. on logout)
+        frontendMessageService.clearAgentCache(userEmail = userProfile?.email, sessionToken = sessionToken)
         // Reset conversation but keep the welcome message placeholder
         _conversationState.value = ConversationState(
             messages = listOf(ChatMessage(content = "WELCOME_MESSAGE_PLACEHOLDER", isUser = false))

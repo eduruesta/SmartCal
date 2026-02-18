@@ -20,7 +20,7 @@ val appModule = module {
     // Services
     single { AuthService(get()) }
     single { CalendarService() }
-    single { com.smartcal.app.services.FrontendMessageService() }
+    single { com.smartcal.app.services.FrontendMessageService(get()) }
     
     // Storage
     single { SessionStorage }

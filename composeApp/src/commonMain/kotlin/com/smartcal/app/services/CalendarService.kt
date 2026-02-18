@@ -29,7 +29,11 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 // Custom exception for 402 Payment Required
-class InsufficientCreditsException(message: String) : Exception(message)
+class InsufficientCreditsException(
+    message: String,
+    val creditsRemaining: Int? = null,
+    val subscriptionPlan: String? = null
+) : Exception(message)
 
 class CalendarService {
     private val baseUrl = "https://calendar-backend-y1rx.onrender.com"
@@ -203,6 +207,57 @@ class CalendarService {
     }
     
     /**
+     * Consume 1 credit for the user (used when running agent locally in app).
+     * @param sessionToken User's session token for authentication
+     * @return Result with MessageResponse containing creditsRemaining, subscriptionPlan on success
+     * @throws InsufficientCreditsException on 402 with creditsRemaining, subscriptionPlan
+     */
+    suspend fun consumeCredits(sessionToken: String): Result<MessageResponse> {
+        return try {
+            println("💳 Consuming 1 credit for user...")
+
+            val response = client.post("$baseUrl/credits/consume") {
+                header("Session-Token", sessionToken)
+            }
+
+            when (response.status) {
+                HttpStatusCode.OK -> {
+                    val messageResponse = response.body<MessageResponse>()
+                    println("✅ Credit consumed successfully: ${messageResponse.creditsRemaining} remaining")
+                    Result.success(messageResponse)
+                }
+                HttpStatusCode.Unauthorized -> {
+                    val errorBody = try { response.body<String>() } catch (_: Exception) { "Unknown 401 error" }
+                    println("🔒 401 Unauthorized in consumeCredits: $errorBody")
+                    Result.failure(UnauthorizedException("Invalid or expired session"))
+                }
+                HttpStatusCode.PaymentRequired -> {
+                    val errorBody = try { response.body<MessageResponse>() } catch (_: Exception) { null }
+                    println("💳 402 Payment Required in consumeCredits - insufficient credits")
+                    Result.failure(
+                        InsufficientCreditsException(
+                            message = errorBody?.message ?: "No tienes suficientes créditos.",
+                            creditsRemaining = errorBody?.creditsRemaining,
+                            subscriptionPlan = errorBody?.subscriptionPlan
+                        )
+                    )
+                }
+                else -> {
+                    val errorBody = try { response.body<String>() } catch (_: Exception) { "Unknown error" }
+                    println("❌ Consume credits failed with status ${response.status}: $errorBody")
+                    Result.failure(Exception("Error consuming credits"))
+                }
+            }
+        } catch (_: SocketTimeoutException) {
+            println("⏰ Consume credits socket timeout")
+            Result.failure(Exception("Server is not responding"))
+        } catch (e: Exception) {
+            println("❌ Consume credits error: ${e.message}")
+            Result.failure(Exception("Consume credits error: ${e.message}"))
+        }
+    }
+
+    /**
      * Send message to backend agent
      * @param sessionToken User's session token for authentication
      * @param message User's message to send to the agent
@@ -240,9 +295,15 @@ class CalendarService {
                     Result.failure(UnauthorizedException("Invalid or expired session"))
                 }
                 HttpStatusCode.PaymentRequired -> {
-                    val errorBody = try { response.body<String>() } catch (_: Exception) { "Insufficient credits" }
-                    println("💳 402 Payment Required in sendMessage: $errorBody")
-                    Result.failure(InsufficientCreditsException("Insufficient credits to send message"))
+                    val errorBody = try { response.body<MessageResponse>() } catch (_: Exception) { null }
+                    println("💳 402 Payment Required in sendMessage - insufficient credits")
+                    Result.failure(
+                        InsufficientCreditsException(
+                            message = errorBody?.message ?: "No tienes suficientes créditos.",
+                            creditsRemaining = errorBody?.creditsRemaining,
+                            subscriptionPlan = errorBody?.subscriptionPlan
+                        )
+                    )
                 }
                 else -> {
                     val errorBody = try { response.body<String>() } catch (_: Exception) { "Unknown error" }

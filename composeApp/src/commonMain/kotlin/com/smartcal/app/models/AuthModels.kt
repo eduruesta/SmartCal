@@ -80,7 +80,8 @@ data class MessageResponse(
     val userInfo: UserBasicInfo? = null,
     val success: Boolean = true,
     val creditsRemaining: Int? = null,
-    val subscriptionPlan: String? = null
+    val subscriptionPlan: String? = null,
+    val showCreditsExhausted: Boolean? = null
 )
 
 @Serializable
