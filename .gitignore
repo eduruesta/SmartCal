@@ -85,3 +85,4 @@ README_CALENDAR_AGENT.md
 
 # MCP server files (if not needed)
 mcp-server/
+composeApp/src/commonMain/kotlin/com/smartcal/app/config/Secrets.kt

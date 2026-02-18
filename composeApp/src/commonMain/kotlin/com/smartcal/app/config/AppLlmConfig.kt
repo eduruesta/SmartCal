@@ -9,9 +9,8 @@ object AppLlmConfig {
     // OpenAI-compatible endpoint (can be a proxy or gateway). Must NOT end with trailing slash.
     var baseUrl: String = "https://api.openai.com/v1"
 
-    // API key for local/dev. In production use a gateway or token provider.
-    // Set this at runtime - DO NOT hardcode secrets here
-    var apiKey: String? = null
+    // API key loaded from local Secrets.kt (gitignored)
+    var apiKey: String? = Secrets.OPENAI_API_KEY
 
     // Default model
     var model: String = "gpt-4o-mini"
